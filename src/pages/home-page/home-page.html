@@ -1,0 +1,18 @@
+<div class="container w-full flex flex-col items-center gap-[20px]">
+  <div class="grid-container">
+    @if (topicList() != null && topicList()?.content) {
+      @for (topic of topicList()?.content; track topic.id) {
+        <app-topic-preview [topic]="topic"></app-topic-preview>
+      }
+    } @else {
+      <p>Статьи не найдены</p>
+    }
+  </div>
+  @if (topicList() != null && topicList()?.content) {
+    <tui-pagination
+      [index]="index()"
+      [length]="topicList()!.totalPages"
+      (indexChange)="goToPage($event)"
+    />
+  }
+</div>

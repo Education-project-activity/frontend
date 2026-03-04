@@ -1,0 +1,47 @@
+<div class="topic-preview" [routerLink]="['/topic', topic.id]">
+  <div class="image">
+    @if (topic.imageUrl == null) {
+      <img src="/assets/img/img-error.png">
+    }
+    @else {
+      <img src="{{ topic.imageUrl }}">
+    }
+  </div>
+
+  <div class="author-priority-block">
+    <div class="author-section">
+      <div class="avatar-container">
+        <img class="avatar-img" src="/assets/img/avatar-error.png">
+        <!--@if (event.imageUrl == "") {
+          <img src="/assets/img/avatar-error.png">
+        }
+        @else {
+          <img src="{{ event.authorImageUrl }}">
+        }!-->
+      </div>
+      <div class="author-info">
+        <p class="author-name">{{ topic.authorName }}</p>
+        <p class="author-label">Новость</p>
+      </div>
+    </div>
+
+    @if (topic.priority) {
+      <div class="priority-block">
+        <tui-icon
+          icon="@tui.star"
+          class="priority-block-icon"
+        ></tui-icon>
+      </div>
+    }
+  </div>
+
+  <div class="text-section">
+    <h4 class="h4">{{ topic.title }}</h4>
+    <span class="p description">{{ topic.description }}</span>
+  </div>
+
+  <div class="data-section">
+    <span class="data-text">{{ topic.createdAt | data }}</span>
+  </div>
+</div>
+

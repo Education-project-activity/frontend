@@ -1,0 +1,94 @@
+<form
+  class="form"
+  [formGroup]="form"
+  (ngSubmit)="onSubmit()">
+
+  <div class="form-wrapper">
+    <div class="header">
+      <h1 class="h1">RoDev news</h1>
+      <p class="subtitle">Создайте аккаунт, чтобы продолжить</p>
+    </div>
+
+    <div class="textfield-wrapper">
+      <tui-textfield>
+        <label tuiLabel>Email</label>
+        <input
+          placeholder="example@rodev.ru"
+          tuiTextfield
+          type="email"
+          formControlName="email"
+        />
+      </tui-textfield>
+
+      <tui-textfield>
+        <label tuiLabel>Пароль</label>
+        <input
+          placeholder="Минимум 8 символов"
+          tuiTextfield
+          type="password"
+          formControlName="password"
+        />
+        <tui-icon tuiPassword />
+      </tui-textfield>
+
+      <div class="row">
+        <tui-textfield>
+          <label tuiLabel>Имя</label>
+          <input
+            placeholder="R"
+            tuiTextfield
+            formControlName="firstName"
+          />
+        </tui-textfield>
+
+        <tui-textfield>
+          <label tuiLabel>Фамилия</label>
+          <input
+            placeholder="B"
+            tuiTextfield
+            formControlName="lastName"
+          />
+        </tui-textfield>
+      </div>
+
+      <div class="row">
+        <tui-textfield>
+          <label tuiLabel>Отдел</label>
+          <input
+            placeholder="-"
+            tuiTextfield
+            formControlName="department"
+          />
+        </tui-textfield>
+
+        <tui-textfield>
+          <label tuiLabel>Должность</label>
+          <input
+            placeholder="-"
+            tuiTextfield
+            formControlName="position"
+          />
+        </tui-textfield>
+      </div>
+    </div>
+
+    <div class="buttons-container">
+      <button
+        appearance="primary"
+        tuiButton
+        type="submit"
+        [disabled]="isSubmitting">
+        Создать аккаунт
+      </button>
+
+      <button
+        routerLink="../login" routerLinkActive="active"
+        appearance="outline"
+        tuiButton
+        type="button">
+        Уже есть аккаунт? Войти
+      </button>
+    </div>
+  </div>
+</form>
+

@@ -1,0 +1,39 @@
+<div class="author-page">
+  @if (author) {
+    <div class="author-card">
+      <div class="avatar">
+        <img src="/assets/img/avatar-error.png" alt="Аватар автора">
+      </div>
+      <div class="author-details">
+        <p class="author-name">{{ author.firstName }} {{ author.lastName }}</p>
+        <p class="author-meta">{{ author.position }} - {{ author.department }}</p>
+        <p class="author-email">{{ author.email }}</p>
+      </div>
+    </div>
+  }
+
+  <div class="topics-section">
+    <div class="section-header">
+      <h3 class="section-title">Твои статьи</h3>
+    </div>
+
+    @if (isLoading) {
+      <p class="state-text">Загружаем материалы...</p>
+    }
+    @else {
+      @if (topics.length > 0) {
+        <div class="grid-container">
+          @for (topic of topics; track topic.id) {
+            <app-topic-preview [topic]="topic"></app-topic-preview>
+          }
+        </div>
+      }
+      @else {
+        <div class="empty-state">
+          <p class="empty-title">Пока нет публикаций</p>
+          <p class="empty-caption">Автор еще не добавил материалы</p>
+        </div>
+      }
+    }
+  </div>
+</div>

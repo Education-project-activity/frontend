@@ -1,0 +1,75 @@
+.form-wrapper {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, 50%);
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  align-items: center;
+  max-width: 500px;
+}
+
+.textfield-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  width: 100%;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  overflow: hidden;
+}
+
+.buttons-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  gap: 20px;
+}
+
+.btn-block-full {
+  position: relative;
+  border-radius: 10px;
+  width: 100%;
+  cursor: pointer;
+  border: none;
+  padding: 0;
+  text-decoration: none;
+  display: block;
+  transition: all 0.3s ease;
+}
+
+.btn-block-full:hover {
+  transform: scale(1.05);
+}
+
+.btn-secondary:hover {
+  opacity: 0.8;
+}
+
+.btn-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: inherit;
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+  gap: 10px;
+}
+
+.btn-border {
+  position: absolute;
+  inset: 0;
+  border: 1px solid var(--outline-color);
+  border-radius: 10px;
+  pointer-events: none;
+}

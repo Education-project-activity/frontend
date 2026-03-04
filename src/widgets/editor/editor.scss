@@ -1,0 +1,91 @@
+:host {
+  display: block;
+  width: 100%;
+}
+
+.editor-container {
+  width: 100%;
+  border-radius: 8px;
+  padding: 12px;
+  background-color: #ffffff00;
+  margin: 0 auto;
+}
+
+.editor-header {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 8px;
+  gap: 12px;
+}
+
+.editor-header h2 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.editor-holder {
+  min-height: 250px;
+  width: 100%;
+}
+
+.dark .ce-toolbar__plus {
+  border: solid 1px var(--tui-text-action);
+  border-radius: 2px;
+}
+
+.dark .ce-popover {
+  &__container {
+    background-color: var(--layout-color);
+    border-color: rgba(255, 255, 255, 0.14);
+  }
+
+  .dark &--opened > &__container {
+    border: 1px solid rgba(255, 255, 255, 0.14);
+  }
+}
+.dark .ce-popover-item, .ce-popover-item-html {
+  background-color: var(--tui-background-base-alt);
+  color: var(--tui-text-action);
+}
+
+.dark .ce-popover-item__title,
+.dark .ce-popover-item__icon {
+  color: var(--tui-text-action);
+}
+
+.dark .ce-popover-item:hover, .ce-popover-item-html:hover {
+  background-color: #000;
+}
+
+.dark .ce-popover-item-separator__line {
+  border: 1px solid hsl(var(--border));
+}
+
+.dark .cdx-search-field.ce-popover__search {
+  background-color: hsl(var(--muted) / 0.3);
+  border-color: hsl(var(--border));
+}
+
+.dark .cdx-search-field__input {
+  color: hsl(var(--foreground));
+}
+
+.dark .ce-toolbar__plus,
+.dark .ce-toolbar__settings-btn {
+  color: hsl(var(--foreground));
+}
+
+.dark .ce-toolbar__plus:hover,
+.dark .ce-toolbar__settings-btn:hover {
+  background-color: hsl(var(--accent) / 0.2);
+}
+
+@media (max-width: 650px) {
+  .dark .ce-toolbar__settings-btn,
+  .dark .ce-toolbar__plus {
+    background-color: hsl(var(--popover));
+    border-color: hsl(var(--border));
+    box-shadow: 0 3px 15px -3px hsl(var(--border) / 0.2);
+  }
+}

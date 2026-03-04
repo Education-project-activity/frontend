@@ -1,0 +1,164 @@
+<form
+  class="topic-page"
+  [formGroup]="topicForm"
+  (ngSubmit)="onSubmit()">
+
+  <div class="w-full flex flex-row items-center justify-between">
+    <button
+      tuiButton
+      tuiChevron
+      type="button"
+      [tuiDropdown]="dropdownContent"
+      [tuiDropdownManual]="dropdownOpen"
+      [tuiObscuredEnabled]="dropdownOpen"
+      (click)="onClickDropdown()"
+      (tuiActiveZoneChange)="onActiveZone($event)"
+      (tuiObscured)="onObscured($event)"
+    >
+      @if (selectedTypeLabel === "news") {
+        Новость
+      } @else {
+        Мероприятие
+      }
+      <ng-template #dropdownContent>
+        <div class="dropdown">
+          <button
+            type="button"
+            class="dropdown__item"
+            (click)="selectType('news')"
+          >
+            Новость
+          </button>
+          <button
+            type="button"
+            class="dropdown__item"
+            (click)="selectType('event')"
+          >
+            Мероприятие
+          </button>
+        </div>
+      </ng-template>
+    </button>
+
+    <button
+      class="my-auto"
+      size="m"
+      tuiButton
+      type="button"
+      [disabled]="!isEditorReady"
+      (click)="openMetaStep()"
+    >
+      Далее
+    </button>
+  </div>
+
+  <div class="container">
+    <div class="main-info">
+      @if (selectedTypeLabel === "event") {
+        <tui-textfield
+          class="w-full"
+          tuiTextfieldSize="m"
+        >
+          <label tuiLabel>Дата мероприятие</label>
+
+          <input
+            tuiInputDateTime
+            type="datetime-local"
+            formControlName="eventDate"
+          />
+          <tui-calendar *tuiTextfieldDropdown />
+        </tui-textfield>
+      }
+
+      <textarea formControlName="title"
+                maxlength="200" resize="none"
+                placeholder="Заголовок" rows="1"
+                class="w-full bg-transparent appearance-none
+                outline-0 focus:ring-0 focus:outline-0
+                placeholder:text-text-tertiary
+                h0 height-auto resize-none h2">
+      </textarea>
+
+      @if (isEditorReady) {
+        <app-editor [data]="editorData"></app-editor>
+      }
+    </div>
+  </div>
+
+  <ng-template
+    let-observer
+    [(tuiDialog)]="isMetaStepOpen"
+  >
+    <div class="flex flex-row gap-[24px]">
+      <div class="flex flex-col gap-[8px] w-[50%]">
+        <div class="image-preview">
+          <img [src]="topicForm.controls.imageUrl.value">
+        </div>
+
+        <tui-textfield
+          tuiTextfieldSize="m"
+        >
+          <label tuiLabel>URL на изображение</label>
+          <input
+            placeholder="https://example.com/image.jpg"
+            tuiTextfield
+            formControlName="imageUrl"
+          />
+        </tui-textfield>
+      </div>
+      <div class="flex flex-col gap-[8px] w-[50%]">
+        <div class="flex flex-col gap-[8px] w-full">
+          <tui-textfield
+            tuiTextfieldSize="l"
+            class="!w-full"
+          >
+            <label tuiLabel>Заголовок</label>
+            <input
+              placeholder="Заголовок"
+              tuiTextfield
+              formControlName="title"
+            />
+          </tui-textfield>
+
+          <tui-textfield
+            multi
+            tuiTextfieldSize="m"
+          >
+            <input
+              placeholder="Введите теги"
+              tuiInputChip
+              [unique]="false"
+              [(ngModel)]="tags"
+              [ngModelOptions]="{standalone: true}"
+              (ngModelChange)="onTagsChange($event)"
+            />
+            <tui-input-chip *tuiItem />
+
+          </tui-textfield>
+
+          <input
+            tuiCheckbox
+            type="checkbox"
+            [indeterminate]="true"
+          />
+        </div>
+      </div>
+    </div>
+
+    <div class="flex justify-end mt-[24px]">
+      <button
+        size="m"
+        tuiButton
+        type="button"
+        [disabled]="isSubmitting"
+        (click)="onSubmit()"
+      >
+        @if (isEditMode) {
+          Сохранить
+        } @else {
+          Опубликовать
+        }
+      </button>
+    </div>
+  </ng-template>
+</form>

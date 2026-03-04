@@ -1,0 +1,54 @@
+<form
+  class="form"
+  [formGroup]="form"
+  (ngSubmit)="onSubmit()">
+
+
+  <div class="form-wrapper">
+    <div class="header">
+      <h1 class="h1">RoDev news</h1>
+    </div>
+
+    <div class="textfield-wrapper">
+      <tui-textfield>
+        <label tuiLabel>Введите email</label>
+        <input
+          placeholder="example@rodev.ru"
+          tuiTextfield
+          type="email"
+          formControlName="email"
+        />
+      </tui-textfield>
+
+      <tui-textfield>
+        <label tuiLabel>Введите пароль</label>
+        <input
+          placeholder="12345678"
+          tuiTextfield
+          type="password"
+          formControlName="password"
+        />
+        <tui-icon tuiPassword />
+      </tui-textfield>
+    </div>
+
+  <div class="buttons-container">
+    <button
+      appearance="primary"
+      tuiButton
+      type="submit">
+      Войти
+    </button>
+
+
+    <button
+      routerLink="../register" routerLinkActive="active"
+      appearance="outline"
+      tuiButton
+      type="button">
+      Нет аккаунта? Регистрация
+    </button>
+
+    </div>
+  </div>
+</form>

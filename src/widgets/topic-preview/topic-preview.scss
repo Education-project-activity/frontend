@@ -1,0 +1,146 @@
+.topic-preview {
+  width: 100%;
+  height: 100%;
+
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  box-sizing: border-box;
+  padding: 10px;
+  margin: 0;
+
+  border-radius: 20px;
+  background: var(--tui-background-base-alt);
+
+  font-family: Inter, sans-serif;
+}
+
+.image {
+  border-radius: 10px;
+  width: 100%;
+
+  aspect-ratio: 9/5;
+  overflow: hidden;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+
+    transition: transform 0.3s ease;
+  }
+
+  &:hover img {
+    transform: scale(1.2);
+  }
+}
+
+.author-priority-block {
+  padding: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  align-self: stretch;
+}
+
+.author-section {
+  width: max-content;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.avatar-container {
+  height: 41px;
+  aspect-ratio: 1 / 1;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.avatar-img {
+  width: 100%;
+  height: 100%;
+}
+
+.author-info {
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 5px;
+}
+
+.author-name {
+  font-family: 'Montserrat Alternates';
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 18px;
+  color: white;
+  flex-shrink: 0;
+}
+
+.author-label {
+  font-family: 'Inter';
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 18px;
+  color: var(--tui-text-tertiary);
+}
+
+.priority-block {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-self: stretch;
+
+  aspect-ratio: 1/1;
+  height: 100%;
+
+  border-radius: 5px;
+  background: var(--tui-background-neutral-1);
+}
+
+.priority-block-icon {
+  width: 50%;
+  height: 50%;
+  color: var(--tui-text-tertiary);
+}
+
+.text-section {
+  width: 100%;
+  height: calc(20px * 4 + 20px);
+  overflow: hidden;
+
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.description {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.data-section {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+  gap: 10px;
+  align-self: stretch;
+}
+
+.data-text {
+  color: var(--tui-text-tertiary);
+  text-align: right;
+  font-family: Inter;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+}

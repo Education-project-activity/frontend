@@ -1,0 +1,84 @@
+@import "../public/assets/fonts/inter/inter";
+@import "../public/assets/fonts/montserrat-alternates/montserrat-alternates";
+@import "../node_modules/tailwindcss";
+@plugin "@tailwindcss/typography";
+@import '../node_modules/@taiga-ui/core/styles/taiga-ui-local';
+@import "./content";
+
+
+:root, [tuiTheme='dark'] {
+  --primary-color: #FFDD2D;
+  --layout-color: #000;
+
+  --tui-background-accent-1: var(--primary-color);
+  --tui-background-accent-1-hover: #ffe153;
+  --tui-background-accent-1-pressed: #958524;
+  --tui-text-primary-on-accent-1: #000;
+  --tui-text-action: #FFF;
+}
+
+body {
+  color: var(--tui-text-primary);
+  background-color: var(--tui-background-base);
+  font-family: Inter, sans-serif;
+  margin: 0;
+  padding: 0;
+
+  width: 100vw;
+  height: 100vh;
+}
+
+.h2 {
+  color: var(--tui-text-primary);
+  font-family: "Montserrat Alternates";
+  font-size: 48px;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.h3 {
+  color: var(--tui-text-primary);
+  font-family: "Montserrat Alternates";
+  font-size: 32px;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.h4 {
+  color: var(--tui-text-primary);
+  font-family: "Montserrat Alternates";
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 20px;
+}
+
+.p {
+  color: var(--tui-text-tertiary);
+  font-family: Inter;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+}
+
+.title-inter {
+  color: var(--tui-text-primary);
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 20px;
+}
+
+.container {
+  width: 100%;
+  max-width: 1024px;
+  margin: 20px auto;
+  height: max-content;
+  min-height: 100%;
+}
+
+.container-mini {
+  width: 100%;
+  max-width: 1024px;
+  margin: 0 auto;
+  max-height: 100%;
+}

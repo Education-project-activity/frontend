@@ -1,0 +1,146 @@
+.topic-page {
+  margin: 50px auto;
+  max-width: 1024px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+  flex-shrink: 0;
+  padding: 40px;
+
+  background-color: var(--tui-background-base-alt);
+  border-radius: 20px;
+}
+
+.description-section {
+  width: 100%;
+  gap: 20px;
+  display: flex;
+  align-items: flex-start;
+  align-self: stretch;
+}
+
+.main-image {
+  border-radius: 20px;
+  width: 50%;
+
+  aspect-ratio: 9/5;
+  overflow: hidden;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+}
+
+.main-info {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+  flex: 1 0 0;
+}
+
+.author-section {
+  width: max-content;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.avatar-container {
+  height: 41px;
+  aspect-ratio: 1 / 1;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.avatar-img {
+  width: 100%;
+  height: 100%;
+}
+
+.author-info {
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 5px;
+}
+
+.author-name {
+  font-family: 'Montserrat Alternates';
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 18px;
+  color: white;
+  flex-shrink: 0;
+}
+
+.author-label {
+  font-family: 'Inter';
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 18px;
+  color: var(--tui-text-tertiary);
+}
+
+.reaction-picker {
+  display: flex;
+  gap: 12px;
+  padding: 12px 12px;
+  border-radius: 16px;
+  background: var(--tui-background-neutral-2);
+  width: fit-content;
+}
+
+.reaction-emoji {
+  font-size: 12px;
+}
+
+.reaction-count {
+  font-weight: 600;
+}
+
+.comment-compose {
+  display: flex;
+  align-items: flex-end;
+  gap: 16px;
+}
+
+.comment-submit {
+  min-width: 180px;
+}
+
+.comment-body {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.comment-author {
+  font-family: 'Inter';
+  font-weight: 600;
+  font-size: 16px;
+  color: var(--tui-text-primary);
+}
+
+.comment-text {
+  font-family: 'Inter';
+  font-size: 16px;
+  color: var(--tui-text-primary);
+  white-space: pre-wrap;
+}
+
+.comment-meta {
+  font-family: 'Inter';
+  font-size: 13px;
+  color: var(--tui-text-tertiary);
+}

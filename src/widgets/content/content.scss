@@ -1,0 +1,40 @@
+:host {
+  display: block;
+  width: 100%;
+}
+
+.editor-container {
+  width: 100%;
+  border-radius: 8px;
+  padding: 12px;
+  background-color: #ffffff00;
+  margin: 0 auto;
+}
+
+.editor-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.editor-header h2 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.editor-header button {
+  padding: 6px 12px;
+  border-radius: 4px;
+  background-color: #f5f5f5;
+  cursor: pointer;
+}
+
+.editor-header button:hover {
+  background-color: #eaeaea;
+}
+
+.editor-holder {
+  min-height: 250px;
+  width: 100%;
+}
