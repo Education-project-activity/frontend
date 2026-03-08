@@ -18,14 +18,7 @@ import {TopicPreviewInterface} from '../../entities/topic/topic-preview.interfac
 })
 export class TopicPreview {
   @Input() topic!: TopicPreviewInterface;
-  author: UserInfoInterface | null = null;
-  private readonly userApi = inject(User);
 
   constructor() {
-    if (this.topic) {
-      this.userApi.getUserByID(this.topic.id).subscribe(val => {
-        this.author = val;
-      });
-    }
   }
 }
