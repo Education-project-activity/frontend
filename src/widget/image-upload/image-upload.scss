@@ -1,0 +1,30 @@
+:host {
+  width: 100%;
+  max-width: 50%;
+}
+
+.img-preview {
+  background: rgba(0, 0, 0, 0.04);
+  border-radius: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  width: 100%;
+  aspect-ratio: 9/5;
+  overflow: hidden;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+
+    transition: transform 0.3s ease;
+  }
+
+  &:hover img {
+    transform: scale(1.2);
+  }
+}
+
+.dropzone {
+  width: 100%;
+}

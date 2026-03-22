@@ -1,0 +1,42 @@
+<div class="flex flex-col gap-[8px] w-full">
+  <div class="img-preview">
+    <img *ngIf="previewUrl; else fallbackPreview" [src]="previewUrl" alt="Preview" />
+    <ng-template #fallbackPreview>
+      <img src="/assets/img/img-error.png" alt="Placeholder" />
+    </ng-template>
+  </div>
+  <div class="dropzone">
+    <label
+      *ngIf="!control.value"
+      tuiInputFiles
+    >
+      <input
+        accept="image/*"
+        tuiInputFiles
+        [formControl]="control"
+      />
+    </label>
+
+    <tui-files class="tui-space_top-1">
+      <tui-file
+        *ngIf="loadedFile"
+        [file]="loadedFile"
+        (remove)="removeFile()"
+      />
+
+      <tui-file
+        *ngIf="rejectedFile"
+        state="error"
+        [file]="rejectedFile"
+        (remove)="removeFile()"
+      />
+
+      <tui-file
+        *ngIf="loadingFile"
+        state="loading"
+        [file]="loadingFile"
+        (remove)="removeFile()"
+      />
+    </tui-files>
+  </div>
+</div>
