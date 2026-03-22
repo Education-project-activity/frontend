@@ -3,45 +3,16 @@
   [formGroup]="topicForm"
   (ngSubmit)="onSubmit()">
 
-  <div class="w-full flex flex-row items-center justify-between">
+  <div class="w-full flex flex-row">
+    <textarea formControlName="title"
+              maxlength="200" resize="none"
+              placeholder="Заголовок" rows="1"
+              class="w-full bg-transparent appearance-none
+              outline-0 focus:ring-0 focus:outline-0
+              placeholder:text-text-tertiary
+              h0 height-auto resize-none h2"></textarea>
     <button
-      tuiButton
-      tuiChevron
-      type="button"
-      [tuiDropdown]="dropdownContent"
-      [tuiDropdownManual]="dropdownOpen"
-      [tuiObscuredEnabled]="dropdownOpen"
-      (click)="onClickDropdown()"
-      (tuiActiveZoneChange)="onActiveZone($event)"
-      (tuiObscured)="onObscured($event)"
-    >
-      @if (selectedTypeLabel === "news") {
-        Новость
-      } @else {
-        Мероприятие
-      }
-      <ng-template #dropdownContent>
-        <div class="dropdown">
-          <button
-            type="button"
-            class="dropdown__item"
-            (click)="selectType('news')"
-          >
-            Новость
-          </button>
-          <button
-            type="button"
-            class="dropdown__item"
-            (click)="selectType('event')"
-          >
-            Мероприятие
-          </button>
-        </div>
-      </ng-template>
-    </button>
-
-    <button
-      class="my-auto"
+      class="ml-auto mr-0"
       size="m"
       tuiButton
       type="button"
@@ -54,31 +25,6 @@
 
   <div class="container">
     <div class="main-info">
-      @if (selectedTypeLabel === "event") {
-        <tui-textfield
-          class="w-full"
-          tuiTextfieldSize="m"
-        >
-          <label tuiLabel>Дата мероприятие</label>
-
-          <input
-            tuiInputDateTime
-            type="datetime-local"
-            formControlName="eventDate"
-          />
-          <tui-calendar *tuiTextfieldDropdown />
-        </tui-textfield>
-      }
-
-      <textarea formControlName="title"
-                maxlength="200" resize="none"
-                placeholder="Заголовок" rows="1"
-                class="w-full bg-transparent appearance-none
-                outline-0 focus:ring-0 focus:outline-0
-                placeholder:text-text-tertiary
-                h0 height-auto resize-none h2">
-      </textarea>
-
       @if (isEditorReady) {
         <app-editor [data]="editorData"></app-editor>
       }
@@ -135,12 +81,6 @@
             <tui-input-chip *tuiItem />
 
           </tui-textfield>
-
-          <input
-            tuiCheckbox
-            type="checkbox"
-            [indeterminate]="true"
-          />
         </div>
       </div>
     </div>

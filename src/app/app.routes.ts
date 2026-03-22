@@ -8,9 +8,9 @@ import {Register} from '../pages/auth/register/register';
 import {HomePage} from '../pages/home-page/home-page';
 import {TopicPage} from '../pages/topic-page/topic-page';
 import {AuthorPage} from '../pages/author-page/author-page';
-import {EditorPage} from '../pages/editor-page/editor-page';
 import {MePage} from '../pages/me-page/me-page';
 import {EditorMenu} from '../pages/editor-menu/editor-menu';
+import {EditorTopicPage} from '../pages/editor-page/editor-topic-page';
 
 export const routes: Routes = [
   { path: 'preview', component: Preview },
@@ -20,9 +20,10 @@ export const routes: Routes = [
       { path: 'topic/:id', component: TopicPage },
       { path: 'author/:id', component: AuthorPage },
       { path: 'editor', component: EditorMenu },
-      { path: 'new-topic', component: EditorPage },
-      { path: 'new-event', component: EditorPage },
-      { path: 'edit/:id', component: EditorPage },
+      { path: 'new-topic', component: EditorTopicPage },
+      { path: 'new-event', component: EditorTopicPage },
+      { path: 'edit-topic/:id', component: EditorTopicPage },
+      { path: 'edit-event/:id', component: EditorTopicPage },
       { path: 'me', component: MePage },
     ],
     canActivate: [canActivateAuth]

@@ -1,15 +1,12 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { TopicPreview } from './topic-preview';
-import { of } from 'rxjs';
 import { TopicPreviewInterface } from '../../entities/topic/topic-preview.interface';
-import { UserInfoInterface } from '../../entities/user/user-info.interface';
 import { User } from '../../utils/api/user';
 import { provideRouter } from '@angular/router';
 
 describe('TopicPreview', () => {
   let component: TopicPreview;
   let fixture: ComponentFixture<TopicPreview>;
-  let mockUserApi: { getUserByID: ReturnType<typeof vi.fn> };
 
   const mockTopic: TopicPreviewInterface = {
     id: 'author123',
@@ -21,23 +18,10 @@ describe('TopicPreview', () => {
     priority: false,
   };
 
-  const mockAuthorInfo: UserInfoInterface = {
-    id: 'author123',
-    firstName: 'First',
-    lastName: 'Last',
-    email: 'test@example.com',
-    position: 'test',
-    department: 'testdepartment',
-  };
-
   beforeEach(async () => {
-    mockUserApi = {
-      getUserByID: vi.fn().mockReturnValue(of(mockAuthorInfo)),
-    };
-
     await TestBed.configureTestingModule({
       imports: [TopicPreview],
-      providers: [provideRouter([]), { provide: User, useValue: mockUserApi }],
+      providers: [provideRouter([]), { provide: User }],
     }).compileComponents();
 
     fixture = TestBed.createComponent(TopicPreview);

@@ -1,8 +1,8 @@
 import {Component, ViewChild, inject, signal} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import {TuiTextfield, TuiButton, TuiAlertService, TuiDropdown, TuiDialog} from '@taiga-ui/core';
+import {TuiTextfield, TuiButton, TuiAlertService, TuiDialog} from '@taiga-ui/core';
 import {FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
-import {TuiCheckbox, TuiChevron, TuiInputChip, TuiInputDateTime, TuiTextarea} from '@taiga-ui/kit';
+import {TuiInputChip} from '@taiga-ui/kit';
 import {TuiDay, TuiTime} from '@taiga-ui/cdk/date-time';
 import {Editor} from '../../widgets/editor/editor';
 import {TopicUpsertInterface} from '../../entities/topic/topic-upsert.interface';
@@ -11,38 +11,28 @@ import {OutputData} from '@editorjs/editorjs';
 import {Auth} from '../../utils/api/auth';
 import {UserInfoInterface} from '../../entities/user/user-info.interface';
 import {User} from '../../utils/api/user';
-import {TuiActiveZone, TuiObscured} from '@taiga-ui/cdk';
 
 @Component({
   selector: 'app-editor-page',
   imports: [
     TuiTextfield,
     ReactiveFormsModule,
-    TuiTextarea,
     TuiButton,
     Editor,
-    TuiInputDateTime,
-    TuiChevron,
-    TuiDropdown,
-    TuiObscured,
-    TuiActiveZone,
     TuiDialog,
     TuiInputChip,
     FormsModule,
-    TuiCheckbox
   ],
-  templateUrl: './editor-page.html',
-  styleUrl: './editor-page.scss',
+  templateUrl: './editor-topic-page.html',
+  styleUrl: './editor-topic-page.scss',
 })
-export class EditorPage {
+export class EditorTopicPage {
   @ViewChild(Editor) editorComponent!: Editor;
 
   private readonly topicApi = inject(Topic);
   private readonly userApi = inject(User);
   private readonly route = inject(ActivatedRoute);
-
   private readonly alerts = inject(TuiAlertService);
-
   private readonly router = inject(Router);
   private readonly auth = inject(Auth);
 
@@ -56,21 +46,14 @@ export class EditorPage {
   author: UserInfoInterface | null = null;
 
   protected topicForm = new FormGroup({
-    type: new FormControl<"news" | "event" | null>("news", Validators.required),
     title: new FormControl('', Validators.required),
     description: new FormControl('', Validators.required),
     imageUrl: new FormControl('', Validators.required),
-    eventDate: new FormControl<readonly [TuiDay, TuiTime | null] | null>(
-      null,
-      Validators.required
-    ),
     tags: new FormControl('', Validators.required),
     priority: new FormControl(false, {nonNullable: true}),
   });
 
   constructor() {
-    this.topicForm.controls.eventDate.setValue(this.toLocalDateTimeValue(new Date()));
-
     const authorId = this.auth.userId;
     if (authorId) {
       this.userApi.getUserByID(authorId)
@@ -88,30 +71,10 @@ export class EditorPage {
     }
   }
 
-  protected dropdownOpen = false;
-  protected onClickDropdown() {
-    this.dropdownOpen = !this.dropdownOpen;
-  }
-  protected onObscured(obscured: boolean): void {
-    if (obscured) {
-      this.dropdownOpen = false;
-    }
-  }
-  protected onActiveZone(active: boolean): void {
-    this.dropdownOpen = active && this.dropdownOpen;
-  }
-  protected selectType(value: "news" | "event"): void {
-    this.topicForm.controls.type.setValue(value);
-    this.dropdownOpen = false;
-  }
-  get selectedTypeLabel() {
-    return this.topicForm.controls.type.value;
-  }
-
   async openMetaStep() {
-    const {title, eventDate, type} = this.topicForm.controls;
+    const {title} = this.topicForm.controls;
 
-    if (title.invalid || eventDate.invalid || type.invalid) {
+    if (title.invalid) {
       if (title.invalid) {
         this.alerts
           .open('Добавьте текст для заголовка', {
@@ -121,8 +84,6 @@ export class EditorPage {
           .subscribe();
         return;
       }
-      eventDate.markAsTouched();
-      type.markAsTouched();
       return;
     }
 
@@ -226,15 +187,13 @@ export class EditorPage {
   }
 
   private buildPayload(content: OutputData): TopicUpsertInterface {
-    const {type, title, description, imageUrl, eventDate, priority} =
+    const {title, description, imageUrl, priority} =
       this.topicForm.getRawValue();
 
     return {
-      type: type ?? 'news',
       title: title ?? '',
       description: description ?? '',
       content,
-      eventDate: this.normalizeEventDate(eventDate),
       imageUrl: imageUrl ?? '',
       priority: priority,
       tags: this.tags,
@@ -302,11 +261,6 @@ export class EditorPage {
         this.topicForm.controls.description.setValue(topic.description ?? '');
         this.topicForm.controls.imageUrl.setValue(topic.imageUrl ?? '');
         this.topicForm.controls.priority.setValue(topic.priority);
-        this.topicForm.controls.eventDate.setValue(
-          topic.eventDate ? this.toLocalDateTimeValue(new Date(topic.eventDate)) : null
-        );
-        this.topicForm.controls.type.setValue(topic.eventDate ? 'event' : 'news');
-
         this.onTagsChange(topic.tags ?? []);
         const content = topic.content as OutputData | null;
         this.editorData = content && Array.isArray(content.blocks) ? content : {blocks: []};
