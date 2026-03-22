@@ -20,6 +20,7 @@ export interface TopicDetailInterface {
   eventDate: string;
   authorName: string;
   imageUrl: string;
+  authorAvatarUrl?: string;
   priority: boolean;
   tags: string[];
 }

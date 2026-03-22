@@ -4,7 +4,8 @@ export interface TopicUpsertInterface {
   title: string;
   description: string;
   content: EditorData;
-  imageUrl: string;
-  priority: boolean;
-  tags: string[];
+  imageUrl?: string;
+  imageBase64?: string;
+  priority?: boolean;
+  tags?: string[];
 }
