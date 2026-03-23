@@ -1,0 +1,45 @@
+<div class="flex flex-row justify-content-between w-full">
+  <h3 class="h3">Комментарии</h3>
+</div>
+<div class="comment-compose w-full">
+  <tui-textfield class="w-full">
+    <label tuiLabel>Текст комментария</label>
+    <textarea
+      placeholder="Написать комментарий"
+      tuiTextarea
+      (input)="onCommentInput($event)"
+      [value]="commentText()"
+      [limit]="500"
+      [max]="6"
+      [min]="3"
+    ></textarea>
+    <button
+      size="m"
+      class="comment-submit"
+      tuiButton
+      appearance="primary"
+      [tuiAppearanceState]="(canSubmitComment() ? null : 'disabled')"
+      type="button"
+      (click)="submitComment()"
+    >
+      Отправить
+    </button>
+  </tui-textfield>
+</div>
+@if (comments().length === 0) {
+  <h4 class="w-full h4 text-center">
+    Поделитесь мнением,<br>
+    и ваш комментарий станет первым
+  </h4>
+} @else {
+  <div class="flex flex-col gap-[12px] !w-full">
+    @for (item of comments(); track item.comment.id) {
+      <span class="container incoming !w-full !m-0">
+        <span tuiMessage class="!w-full flex flex-col gap-[8px] !m-0">
+          <p class="p">{{ item.comment.author.first_name }} {{ item.comment.author.last_name }}</p>
+          <div class="comment-text">{{ item.comment.content }}</div>
+        </span>
+      </span>
+    }
+  </div>
+}
