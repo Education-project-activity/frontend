@@ -1,16 +1,14 @@
 import {Component, inject, Input} from '@angular/core';
 import {RouterLink} from '@angular/router';
-import {DataPipe} from '../../utils/pipe/data.pipe';
+import {DatePipe} from '../../utils/pipe/data.pipe';
 import {TuiIcon} from '@taiga-ui/core';
-import {UserInfoInterface} from '../../entities/user/user-info.interface';
-import {User} from '../../utils/api/user';
 import {TopicPreviewInterface} from '../../entities/topic/topic-preview.interface';
 
 @Component({
   selector: 'app-topic-preview',
   imports: [
     RouterLink,
-    DataPipe,
+    DatePipe,
     TuiIcon
   ],
   templateUrl: './topic-preview.html',

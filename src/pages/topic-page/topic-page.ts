@@ -178,5 +178,4 @@ export class TopicPage {
         this.isSubscribed.set(val.subscribed);
       });
   }
-
 }

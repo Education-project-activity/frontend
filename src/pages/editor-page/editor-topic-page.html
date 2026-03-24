@@ -36,23 +36,11 @@
     [(tuiDialog)]="isMetaStepOpen"
   >
     <div class="flex flex-row gap-[24px]">
-      <div class="flex flex-col gap-[8px] w-[50%]">
-        <div class="image-preview">
-          <img [src]="topicForm.controls.imageUrl.value">
-        </div>
-
-        <tui-textfield
-          tuiTextfieldSize="m"
-        >
-          <label tuiLabel>URL на изображение</label>
-          <input
-            placeholder="https://example.com/image.jpg"
-            tuiTextfield
-            formControlName="imageUrl"
-          />
-        </tui-textfield>
-      </div>
-      <div class="flex flex-col gap-[8px] w-[50%]">
+      <app-image-upload
+        [initialImage]="topicForm.controls.image.value"
+        (imageChange)="onImageChange($event)"
+      ></app-image-upload>
+      <div class="flex flex-col gap-[8px] w-full max-w-[50%]">
         <div class="flex flex-col gap-[8px] w-full">
           <tui-textfield
             tuiTextfieldSize="l"

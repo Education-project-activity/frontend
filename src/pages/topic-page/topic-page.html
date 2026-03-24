@@ -1,52 +1,54 @@
 <div class="topic-page">
-  <div class="w-full flex flex-row items-center justify-between">
-    <div class="author-section" [routerLink]="['/author', topic.authorId]">
-      <div class="avatar-container">
-        <img class="avatar-img" [src]="topic.authorAvatarUrl || '/assets/img/avatar-error.png'">
+  @if (topic) {
+    <div class="w-full flex flex-row items-center justify-between">
+      <div class="author-section" [routerLink]="['/author', topic.authorId]">
+        <div class="avatar-container">
+          <img class="avatar-img" [src]="topic.authorAvatarUrl || '/assets/img/avatar-error.png'">
+        </div>
+        <div class="author-info">
+          <p class="author-name">{{ topic.authorName }}</p>
+          <p class="author-label">Новость</p>
+        </div>
       </div>
-      <div class="author-info">
-        <p class="author-name">{{ topic.authorName }}</p>
-        <p class="author-label">Новость</p>
+      <div class="flex flex-row gap-[5px]">
+        @if (isYourTopic()) {
+          <button
+            size="s"
+            appearance="outline"
+            tuiButton
+            type="button"
+            [routerLink]="['/edit-topic', topic.id]"
+          >
+            Редактировать
+          </button>
+          <button
+            size="s"
+            appearance="outline"
+            tuiButton
+            type="button"
+            (click)="showDeleteNotification()"
+          >
+            Удалить
+          </button>
+        }
+        @else {
+          <button
+            size="s"
+            appearance="outline"
+            tuiButton
+            type="button"
+            [disabled]="isSubscriptionLoading()"
+            (click)="toggleSubscription()"
+          >
+            {{ isSubscribed() ? 'Отписаться' : 'Подписаться' }}
+          </button>
+        }
       </div>
     </div>
-    <div class="flex flex-row gap-[5px]">
-      @if (isYourTopic()) {
-        <button
-          size="s"
-          appearance="outline"
-          tuiButton
-          type="button"
-          [routerLink]="['/edit-topic', topic.id]"
-        >
-          Редактировать
-        </button>
-        <button
-          size="s"
-          appearance="outline"
-          tuiButton
-          type="button"
-          (click)="showDeleteNotification()"
-        >
-          Удалить
-        </button>
-      }
-      @else {
-        <button
-          size="s"
-          appearance="outline"
-          tuiButton
-          type="button"
-          [disabled]="isSubscriptionLoading()"
-          (click)="toggleSubscription()"
-        >
-          {{ isSubscribed() ? 'Отписаться' : 'Подписаться' }}
-        </button>
-      }
-    </div>
-  </div>
-  <h2 class="h2">{{ topic.title }}</h2>
-  <app-content [data]="topic?.content"></app-content>
-  <app-reactions [topicId]="id()"></app-reactions>
+    <h2 class="h2">{{ topic.title }}</h2>
+    <app-content [data]="topic.content"></app-content>
+    <app-reactions [topicId]="id()"></app-reactions>
+  }
 </div>
 
 <app-comment-section [topicId]="id()"></app-comment-section>

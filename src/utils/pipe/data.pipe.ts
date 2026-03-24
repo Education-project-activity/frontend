@@ -3,7 +3,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 @Pipe({
   name: 'data'
 })
-export class DataPipe implements PipeTransform {
+export class DatePipe implements PipeTransform {
   transform(value: string | Date): string {
     if (!value) return '';
 

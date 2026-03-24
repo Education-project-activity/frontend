@@ -11,6 +11,7 @@ import {OutputData} from '@editorjs/editorjs';
 import {Auth} from '../../utils/api/auth';
 import {UserInfoInterface} from '../../entities/user/user-info.interface';
 import {User} from '../../utils/api/user';
+import {ImageUpload} from '../../widgets/image-upload/image-upload';
 
 @Component({
   selector: 'app-editor-page',
@@ -22,6 +23,7 @@ import {User} from '../../utils/api/user';
     TuiDialog,
     TuiInputChip,
     FormsModule,
+    ImageUpload,
   ],
   templateUrl: './editor-topic-page.html',
   styleUrl: './editor-topic-page.scss',
@@ -48,7 +50,7 @@ export class EditorTopicPage {
   protected topicForm = new FormGroup({
     title: new FormControl('', Validators.required),
     description: new FormControl('', Validators.required),
-    imageUrl: new FormControl('', Validators.required),
+    image: new FormControl('', Validators.required),
     tags: new FormControl('', Validators.required),
     priority: new FormControl(false, {nonNullable: true}),
   });
@@ -186,18 +188,33 @@ export class EditorTopicPage {
     this.topicForm.controls.tags.setValue(tags.join(','));
   }
 
+  protected onImageChange(imageBase64: string): void {
+    this.topicForm.controls.image.setValue(imageBase64);
+    this.topicForm.controls.image.markAsDirty();
+    this.topicForm.controls.image.updateValueAndValidity();
+  }
+
   private buildPayload(content: OutputData): TopicUpsertInterface {
-    const {title, description, imageUrl, priority} =
+    const {title, description, image, priority} =
       this.topicForm.getRawValue();
 
-    return {
+    const normalizedImage = image?.trim() ?? '';
+
+    const payload: TopicUpsertInterface = {
       title: title ?? '',
       description: description ?? '',
       content,
-      imageUrl: imageUrl ?? '',
       priority: priority,
       tags: this.tags,
     };
+
+    if (normalizedImage.startsWith('data:image/')) {
+      payload.imageBase64 = normalizedImage;
+    } else if (normalizedImage) {
+      payload.imageUrl = normalizedImage;
+    }
+
+    return payload;
   }
 
   private toLocalDateTimeValue(date: Date): readonly [TuiDay, TuiTime] {
@@ -259,7 +276,7 @@ export class EditorTopicPage {
       next: topic => {
         this.topicForm.controls.title.setValue(topic.title ?? '');
         this.topicForm.controls.description.setValue(topic.description ?? '');
-        this.topicForm.controls.imageUrl.setValue(topic.imageUrl ?? '');
+        this.topicForm.controls.image.setValue(topic.imageUrl ?? '');
         this.topicForm.controls.priority.setValue(topic.priority);
         this.onTagsChange(topic.tags ?? []);
         const content = topic.content as OutputData | null;

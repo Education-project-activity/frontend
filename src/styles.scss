@@ -3,7 +3,6 @@
 @import "../node_modules/tailwindcss";
 @plugin "@tailwindcss/typography";
 @import '../node_modules/@taiga-ui/core/styles/taiga-ui-local';
-@import "./content";
 
 
 :root, [tuiTheme='dark'] {
