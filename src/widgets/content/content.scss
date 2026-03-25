@@ -1,18 +1,17 @@
 :host {
   display: block;
   width: 100%;
+  align-self: stretch;
 }
 
 .content-block {
   display: flex;
   flex-direction: column;
-  flex: 1;
   width: 100%;
 
   font-family: 'Inter', sans-serif;
   color: var(--tui-text-primary);
   font-size: 16px;
-  max-width: 65ch;
 
   h2, h3 {
     font-weight: 600;
@@ -38,6 +37,12 @@
     margin-bottom: 1.25em;
   }
 
+  img {
+    max-width: 100%;
+    border-radius: 20px;
+    margin: 1rem 0 3rem 0;
+  }
+
   a {
     color: var(--primary-color);
     text-decoration: underline;
@@ -50,53 +55,68 @@
     }
   }
 
-  q {
-    background: #ffffff05;
-    border-radius: 10px;
-    margin: 2em 0;
-    padding-left: 1.5em;
-    border-left: 4px solid var(--primary-color);
+  .quote {
+    position: relative;
+    margin: 1em 0;
+    width: 100%;
+    padding: 1.25em 1.25em 1.25em 3em;
+    background: var(--tui-background-neutral-1);
+    border-radius: 20px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+
+    &::before {
+      content: '';
+      position: absolute;
+      left: 1.25em;
+      top: 1.25em;
+      bottom: 1.25em;
+      width: 4px;
+      border-radius: 999px;
+      background: var(--primary-color);
+    }
 
     p.text {
+      margin: 0;
+      padding: 0;
+      font-size: 1.25rem;
       font-style: italic;
-      font-weight: 500;
+      font-weight: 300;
       color: var(--tui-text-primary);
-      min-height: auto;
-      margin-bottom: 0.5em;
     }
 
     p.caption {
-      font-family: 'Inter', sans-serif;
-      font-size: 0.875em;
-      text-align: right;
-      color: var(--tui-text-tertiary);
+      margin: 0;
+      padding: 0;
+      font-size: 1rem;
+      font-weight: 600;
+      text-align: left;
+      color: var(--tui-text-primary);
     }
   }
 
   ul {
-    margin: 1.25em 0;
-    padding-left: 1.625em;
+    margin: 0.25em 0 1em 0;
+    padding-left: 1em;
+    list-style-type: disc;
 
     li {
-      padding: 0.25em 0;
-
-      &::marker {
-        color: var(--tui-text-tertiary);
-      }
+      padding: 0;
     }
   }
 
   hr {
+    border: 0;
+    height: 4px;
     margin: 3em 0;
-    text-align: center;
-    line-height: 1.5;
 
-    &::before {
-      content: '***';
-      color: var(--outline-color);
-      font-size: 1.5em;
-      letter-spacing: 0.5em;
-    }
+    background-image: repeating-linear-gradient(
+        to right,
+        var(--outline-color) 0 24px,
+        transparent 24px 60px
+    );
   }
 
   b {

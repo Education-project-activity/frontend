@@ -1,7 +1,61 @@
+<app-avatar-upload
+  [initialImage]="meInfo?.avatarUrl"
+  (imageChange)="onImageChange($event)">
+</app-avatar-upload>
+
 <form
   class="form-list"
   [formGroup]="meForm"
   (ngSubmit)="onSubmit()">
 
-  ads
+  <tui-textfield>
+    <label tuiLabel>Email</label>
+    <input
+      placeholder="Введите ваш email"
+      tuiTextfield
+      type="email"
+      formControlName="email"
+    />
+    <tui-icon icon="@tui.mail" />
+  </tui-textfield>
+
+  <tui-textfield>
+    <label tuiLabel>Должность</label>
+    <input
+      placeholder="Введите вашу должность"
+      tuiTextfield
+      type="text"
+      formControlName="position"
+    />
+  </tui-textfield>
+
+  <tui-textfield>
+    <label tuiLabel>Отдел</label>
+    <input
+      placeholder="Введите ваш отдел"
+      tuiTextfield
+      type="text"
+      formControlName="department"
+    />
+  </tui-textfield>
+
+  <div class="flex justify-between mt-[24px]">
+    <button
+      size="m"
+      tuiButton
+      type="button"
+      appearance="outline"
+      (click)="logout()"
+    >
+      Выйти
+    </button>
+    <button
+      size="m"
+      tuiButton
+      type="button"
+      (click)="onSubmit()"
+    >
+      Сохранить
+    </button>
+  </div>
 </form>

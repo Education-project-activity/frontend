@@ -5,4 +5,5 @@ export interface UserInfoInterface {
   lastName: string;
   position: string;
   department: string;
+  avatarUrl: string;
 }

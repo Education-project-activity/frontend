@@ -217,22 +217,6 @@ export class EditorTopicPage {
     return payload;
   }
 
-  private toLocalDateTimeValue(date: Date): readonly [TuiDay, TuiTime] {
-    return [TuiDay.fromLocalNativeDate(date), TuiTime.fromLocalNativeDate(date)];
-  }
-
-  private normalizeEventDate(
-    eventDate: readonly [TuiDay, TuiTime | null] | null | undefined
-  ): string {
-    if (!eventDate) {
-      return '';
-    }
-
-    const [day, time] = eventDate;
-    const timeValue = time?.toString('HH:MM') ?? '00:00';
-    return `${day.toJSON()}T${timeValue}:00`;
-  }
-
   private buildDescription(content: OutputData): string {
     const parts: string[] = [];
 

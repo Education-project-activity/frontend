@@ -4,7 +4,7 @@ import {
   Input,
   AfterViewInit,
   OnDestroy,
-  ViewChild,
+  ViewChild, inject,
 } from '@angular/core';
 
 import EditorJS, {
@@ -19,6 +19,8 @@ import NestedList from '@editorjs/nested-list';
 import Paragraph from '@editorjs/paragraph';
 import Marker from '@editorjs/marker';
 import Underline from '@editorjs/underline';
+import ImageTool from '@editorjs/image';
+import {ApiConfig} from '../../shared/config/api.config';
 
 const HeaderTool = Header as unknown as ToolConstructable;
 const DelimiterTool = Delimiter as unknown as ToolConstructable;
@@ -27,6 +29,7 @@ const NestedListTool = NestedList as unknown as ToolConstructable;
 const ParagraphTool = Paragraph as unknown as ToolConstructable;
 const MarkerTool = Marker as unknown as ToolConstructable;
 const UnderlineTool = Underline as unknown as ToolConstructable;
+const ImagesTool = ImageTool as unknown as ToolConstructable;
 
 @Component({
   selector: 'app-editor',
@@ -36,8 +39,9 @@ const UnderlineTool = Underline as unknown as ToolConstructable;
 })
 export class Editor implements AfterViewInit, OnDestroy {
   @Input() data: OutputData | null = null;
-  @ViewChild('editorJS', { static: true })
+  apiConfig = inject(ApiConfig);
 
+  @ViewChild('editorJS', { static: true })
   editorHolder!: ElementRef<HTMLDivElement>;
 
   private editor: EditorJS | null = null;
@@ -79,6 +83,15 @@ export class Editor implements AfterViewInit, OnDestroy {
         paragraph: {
           class: ParagraphTool,
           inlineToolbar: true,
+        },
+        image: {
+          class: ImageTool,
+          config: {
+            endpoints: {
+              byFile: `${this.apiConfig.getBaseApiUrl()}editor/images/by-file`,
+              byUrl: `${this.apiConfig.getBaseApiUrl()}editor/images/by-url`,
+            }
+          }
         },
         list: {
           class: NestedListTool,
