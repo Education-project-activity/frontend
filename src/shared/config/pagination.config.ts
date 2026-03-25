@@ -4,7 +4,7 @@ import {Injectable} from '@angular/core';
   providedIn: 'root'
 })
 export class PaginationConfig {
-  readonly pageSize = 6;
+  readonly pageSize = 12;
 
   getPageSize() {
     return this.pageSize;

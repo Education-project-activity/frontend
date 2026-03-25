@@ -9,6 +9,17 @@
         <p class="author-meta">{{ author.position }} - {{ author.department }}</p>
         <p class="author-email">{{ author.email }}</p>
       </div>
+      <div class="author-actions">
+        <button
+          size="s"
+          appearance="outline"
+          tuiButton
+          type="button"
+          [routerLink]="['/edit-profile']"
+        >
+          Редактировать
+        </button>
+      </div>
     </div>
   }
 

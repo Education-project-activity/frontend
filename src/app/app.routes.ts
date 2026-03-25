@@ -11,6 +11,7 @@ import {AuthorPage} from '../pages/author-page/author-page';
 import {MePage} from '../pages/me-page/me-page';
 import {EditorMenu} from '../pages/editor-menu/editor-menu';
 import {EditorTopicPage} from '../pages/editor-page/editor-topic-page';
+import {EditProfilePage} from '../pages/edit-profile-page/edit-profile-page';
 
 export const routes: Routes = [
   { path: 'preview', component: Preview },
@@ -25,6 +26,7 @@ export const routes: Routes = [
       { path: 'edit-topic/:id', component: EditorTopicPage },
       { path: 'edit-event/:id', component: EditorTopicPage },
       { path: 'me', component: MePage },
+      { path: 'edit-profile', component: EditProfilePage },
     ],
     canActivate: [canActivateAuth]
   },

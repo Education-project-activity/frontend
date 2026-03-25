@@ -13,6 +13,7 @@ export class DisplayjsPipe implements PipeTransform {
     header3: (block) => this.parseHeader(block),
     header4: (block) => this.parseHeader(block),
     paragraph: (block) => this.parseParagraph(block),
+    image: (block) => this.parseImage(block),
     list: (block) => this.parseList(block),
     quote: (block) => this.parseQuote(block),
     delimiter: () => this.parseDelimiter(),
@@ -35,16 +36,22 @@ export class DisplayjsPipe implements PipeTransform {
     }
   }
 
+
+  private parseHeader(block: any): string {
+    const { level, text } = block.data;
+
+    return `<h${level}>${text}</h${level}>`;
+  }
+
   private parseParagraph(block: any): string {
     const { text } = block.data;
 
     return `<p>${text}</p>`;
   }
 
-  private parseHeader(block: any): string {
-    const { level, text } = block.data;
-
-    return `<h${level}>${text}</h${level}>`;
+  private parseImage(block: any): string {
+    const { caption, file} = block.data;
+    return `<img alt="${caption}" src="${file.url}">`;
   }
 
   private parseList(block: any): string {
@@ -66,13 +73,14 @@ export class DisplayjsPipe implements PipeTransform {
   private parseQuote(block: any): string {
     const { text, caption, alignment } = block.data;
 
-    return `<q>
+    return `<div class="quote">
 <p class="text">${text}</p>
 <p class="caption">${caption}</p>
-</q>`;
+</div>`;
   }
 
   private parseDelimiter(): string {
     return `<hr>`;
   }
+
 }

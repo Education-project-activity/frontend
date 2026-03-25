@@ -1,32 +1,32 @@
 import {Component, inject} from '@angular/core';
-import {ActivatedRoute, RouterLink} from '@angular/router';
-import {forkJoin} from 'rxjs';
-import {TopicPreview} from '../../widgets/topic-preview/topic-preview';
 import {Topic} from '../../utils/api/topic';
 import {User} from '../../utils/api/user';
+import {Auth} from '../../utils/api/auth';
 import {UserInfoInterface} from '../../entities/user/user-info.interface';
 import {TopicPreviewInterface} from '../../entities/topic/topic-preview.interface';
-import {Auth} from '../../utils/api/auth';
-import {TuiButton} from '@taiga-ui/core';
+import {forkJoin} from 'rxjs';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 
 @Component({
-  selector: 'app-me-page',
-  imports: [
-    TopicPreview,
-    TuiButton,
-    RouterLink
-  ],
-  templateUrl: './me-page.html',
-  styleUrl: './me-page.scss',
+  selector: 'app-edit-profile-page',
+  imports: [],
+  templateUrl: './edit-profile-page.html',
+  styleUrl: './edit-profile-page.scss',
 })
-export class MePage {
-  private readonly topicApi = inject(Topic);
+export class EditProfilePage {
   private readonly userApi = inject(User);
   private readonly auth = inject(Auth);
 
   author: UserInfoInterface | null = null;
-  topics: TopicPreviewInterface[] = [];
   isLoading = true;
+
+  protected topicForm = new FormGroup({
+    title: new FormControl('', Validators.required),
+    title: new FormControl('', Validators.required),
+    title: new FormControl('', Validators.required),
+    title: new FormControl('', Validators.required),
+    title: new FormControl('', Validators.required),
+  });
 
   constructor() {
     const authorId = this.auth.userId;
@@ -38,15 +38,10 @@ export class MePage {
   private loadAuthorPage(authorId: string) {
     this.isLoading = true;
     this.author = null;
-    this.topics = [];
 
-    forkJoin({
-      author: this.userApi.getUserByID(authorId),
-      topics: this.topicApi.getTopicsByAuthor(authorId)
-    }).subscribe({
-      next: ({author, topics}) => {
+      this.userApi.getUserByID(authorId).subscribe({
+      next: (author) => {
         this.author = author;
-        this.topics = topics;
         this.isLoading = false;
       },
       error: () => {

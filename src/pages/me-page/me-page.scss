@@ -21,6 +21,7 @@
 .avatar {
   height: 100%;
   aspect-ratio: 1/1;
+  flex-shrink: 0;
   border-radius: 18px;
   overflow: hidden;
   background: var(--tui-background-neutral-2);
@@ -36,8 +37,15 @@
 .author-details {
   display: flex;
   height: max-content;
+  width: 100%;
   flex-direction: column;
   gap: 5px;
+}
+
+.author-actions {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .author-name {

@@ -1,13 +1,23 @@
-.topic-page {
-  margin: 50px auto;
-  max-width: 1024px;
+:host {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
 
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: stretch;
+}
+
+.topic-page {
+  margin: 50px auto;
+  width: 100%;
+  padding: 40px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
   gap: 20px;
   flex-shrink: 0;
-  padding: 40px;
 
   background-color: var(--tui-background-base-alt);
   border-radius: 20px;
