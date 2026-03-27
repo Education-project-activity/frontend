@@ -6,12 +6,14 @@ import {HttpParams} from '@angular/common/http';
 import {TuiPagination} from '@taiga-ui/kit';
 import {TopicPreviewInterface} from '../../entities/topic/topic-preview.interface';
 import {PaginationConfig} from '../../shared/config/pagination.config';
+import {AuthorsTop} from '../../widgets/authors-top/authors-top';
 
 @Component({
   selector: 'app-home-page',
   imports: [
     TopicPreview,
-    TuiPagination
+    TuiPagination,
+    AuthorsTop
   ],
   templateUrl: './home-page.html',
   styleUrl: './home-page.scss',

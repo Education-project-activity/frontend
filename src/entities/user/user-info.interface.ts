@@ -5,5 +5,7 @@ export interface UserInfoInterface {
   lastName: string;
   position: string;
   department: string;
+  followersCount: number | null | undefined;
+  topPosition: number | null | undefined;
   avatarUrl: string;
 }

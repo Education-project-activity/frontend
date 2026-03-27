@@ -23,6 +23,14 @@ export class User {
     );
   }
 
+  getTop5() {
+    return this.http.get<UserInfoInterface[]>(`${this.baseApiUrl}rating/preview`);
+  }
+
+  getTop25() {
+    return this.http.get<UserInfoInterface[]>(`${this.baseApiUrl}rating`);
+  }
+
   putMe(payload: AuthorUpsertInterface) {
     return this.http.put<UserInfoInterface>(`${this.baseApiUrl}me`, payload)
   }

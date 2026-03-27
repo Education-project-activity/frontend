@@ -81,7 +81,7 @@
     p.text {
       margin: 0;
       padding: 0;
-      font-size: 1.25rem;
+      font-size: 1rem;
       font-style: italic;
       font-weight: 300;
       color: var(--tui-text-primary);
@@ -90,7 +90,7 @@
     p.caption {
       margin: 0;
       padding: 0;
-      font-size: 1rem;
+      font-size: 0.85rem;
       font-weight: 600;
       text-align: left;
       color: var(--tui-text-primary);
@@ -109,13 +109,12 @@
 
   hr {
     border: 0;
-    height: 4px;
-    margin: 3em 0;
-
-    background-image: repeating-linear-gradient(
+    height: 2px;
+    margin: 2em 0;
+    background: repeating-linear-gradient(
         to right,
-        var(--outline-color) 0 24px,
-        transparent 24px 60px
+        var(--tui-text-tertiary) 0 24px,
+        transparent 24px calc(24px + 36px)
     );
   }
 

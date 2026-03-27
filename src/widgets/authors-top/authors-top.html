@@ -1,0 +1,29 @@
+<div class="author-preview">
+  <div class="flex flex-row justify-between">
+    <h4 class="h4 my-auto">Рейтинг</h4>
+    <button
+      size="s"
+      appearance="outline"
+      tuiButton
+      type="button"
+      routerLink="/author-rating"
+    >
+      Все
+    </button>
+  </div>
+  <div class="flex flex-col gap-[10px]">
+    @if (authorTop()) {
+      @for (author of authorTop(); track author.id) {
+        <div class="author-section" [routerLink]="'author/' + author.id">
+          <div class="avatar-container">
+            <img class="avatar-img" [src]="author.avatarUrl || '/assets/img/avatar-error.png'">
+          </div>
+          <div class="author-info">
+            <p class="author-name">{{ author.firstName }} {{ author.lastName }}</p>
+            <p class="author-label">Топ {{ author.topPosition }}</p>
+          </div>
+        </div>
+      }
+    }
+  </div>
+</div>

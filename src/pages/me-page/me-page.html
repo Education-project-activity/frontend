@@ -2,7 +2,7 @@
   @if (author) {
     <div class="author-card">
       <div class="avatar">
-        <img src="/assets/img/avatar-error.png" alt="Аватар автора">
+        <img [src]="author.avatarUrl || '/assets/img/avatar-error.png'" alt="Аватар автора">
       </div>
       <div class="author-details">
         <p class="author-name">{{ author.firstName }} {{ author.lastName }}</p>

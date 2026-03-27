@@ -1,18 +1,21 @@
-<div class="container w-full flex flex-col items-center gap-[20px]">
-  <div class="grid-container">
-    @if (topicList() != null && topicList()?.content) {
-      @for (topic of topicList()?.content; track topic.id) {
-        <app-topic-preview [topic]="topic"></app-topic-preview>
+<div class="container w-full flex flex-row align-items-start gap-[10px]">
+  <div class="w-full flex flex-col items-center gap-[20px] m-0 max-w-[800px]">
+    <div class="grid-container">
+      @if (topicList() != null && topicList()?.content) {
+        @for (topic of topicList()?.content; track topic.id) {
+          <app-topic-preview [topic]="topic"></app-topic-preview>
+        }
+      } @else {
+        <p>Статьи не найдены</p>
       }
-    } @else {
-      <p>Статьи не найдены</p>
+    </div>
+    @if (topicList() != null && topicList()?.content) {
+      <tui-pagination
+        [index]="index()"
+        [length]="topicList()!.totalPages"
+        (indexChange)="goToPage($event)"
+      />
     }
   </div>
-  @if (topicList() != null && topicList()?.content) {
-    <tui-pagination
-      [index]="index()"
-      [length]="topicList()!.totalPages"
-      (indexChange)="goToPage($event)"
-    />
-  }
+  <app-authors-top></app-authors-top>
 </div>

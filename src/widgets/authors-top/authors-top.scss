@@ -1,0 +1,75 @@
+:host {
+  width: 100%;
+  max-width: 300px;
+}
+
+h4.label {
+  color: var(--tui-text-primary);
+  font-family: "Montserrat Alternates";
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 20px;
+}
+
+.author-name {
+  font-family: 'Montserrat Alternates';
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 18px;
+  color: white;
+  flex-shrink: 0;
+}
+
+.author-preview {
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  box-sizing: border-box;
+  padding: 10px;
+  margin: 0;
+
+  border-radius: 20px;
+  background: var(--tui-background-base-alt);
+
+  font-family: Inter, sans-serif;
+}
+
+.author-section {
+  width: max-content;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.avatar-container {
+  height: 41px;
+  aspect-ratio: 1 / 1;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.avatar-img {
+  width: 100%;
+  height: 100%;
+}
+
+.author-info {
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 5px;
+}
+
+.author-label {
+  font-family: 'Inter';
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 18px;
+  color: var(--tui-text-tertiary);
+}
