@@ -1,9 +1,13 @@
-@import "../topic-page/topic-page";
-
-.image-preview {
-  border-radius: 10px;
+:host {
   width: 100%;
+  max-width: 50%;
+}
 
+.img-preview {
+  background: rgba(0, 0, 0, 0.04);
+  border-radius: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  width: 100%;
   aspect-ratio: 9/5;
   overflow: hidden;
 
@@ -19,4 +23,8 @@
   &:hover img {
     transform: scale(1.2);
   }
+}
+
+.dropzone {
+  width: 100%;
 }

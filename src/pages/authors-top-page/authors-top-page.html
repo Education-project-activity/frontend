@@ -1,0 +1,27 @@
+<div class="author-top-page">
+  <div class="flex flex-row justify-between items-center">
+    <h3 class="h3">Рейтинг</h3>
+    <p class="p">По количеству подписчиков</p>
+  </div>
+  <div class="flex flex-col gap-[10px] w-full">
+    @if (authorTop()) {
+      @for (author of authorTop(); track author.id) {
+        <div class="author-section" [routerLink]="'author/' + author.id">
+          <div class="avatar-container">
+            <img class="avatar-img" [src]="author.avatarUrl || '/assets/img/avatar-error.png'">
+          </div>
+          <div class="author-info w-full">
+            <div class="flex flex-row justify-between w-full">
+              <p class="author-name">{{ author.firstName }} {{ author.lastName }}</p>
+              <p class="p">Топ {{ author.topPosition }}</p>
+            </div>
+            <div class="flex flex-row justify-between w-full">
+              <p class="p">{{ author.followersCount }} подписчиков</p>
+<!--              <p class="author-label">Топ {{ author.topPosition }}</p>-->
+            </div>
+          </div>
+        </div>
+      }
+    }
+  </div>
+</div>

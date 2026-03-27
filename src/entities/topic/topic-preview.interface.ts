@@ -5,5 +5,6 @@ export interface TopicPreviewInterface {
   description : string;
   createdAt : string;
   imageUrl : string;
+  authorAvatarUrl?: string;
   priority : boolean;
 }

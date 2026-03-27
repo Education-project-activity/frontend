@@ -1,1 +1,35 @@
-<p>editor-menu works!</p>
+<div class="page">
+  <div class="flex row gap-[10px]">
+    <div class="empty-state w-full choose-btn" routerLink="/new-topic">
+      <p class="empty-title">Новая статья</p>
+    </div>
+    <div class="empty-state w-full choose-btn" routerLink="/new-event">
+      <p class="empty-title">Новое мероприятие</p>
+    </div>
+  </div>
+
+  <div class="topics-section">
+    <div class="section-header">
+      <h3 class="section-title">Твои статьи</h3>
+    </div>
+
+    @if (isLoading) {
+      <p class="state-text">Загружаем материалы...</p>
+    }
+    @else {
+      @if (topics.length > 0) {
+        <div class="grid-container">
+          @for (topic of topics; track topic.id) {
+            <app-topic-preview [topic]="topic"></app-topic-preview>
+          }
+        </div>
+      }
+      @else {
+        <div class="empty-state">
+          <p class="empty-title">Пока нет публикаций</p>
+          <p class="empty-caption">Автор еще не добавил материалы</p>
+        </div>
+      }
+    }
+  </div>
+</div>

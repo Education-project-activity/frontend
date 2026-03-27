@@ -45,12 +45,37 @@
   align-self: stretch;
 }
 
+.author-name {
+  font-family: 'Montserrat Alternates';
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 18px;
+  color: white;
+  flex-shrink: 0;
+}
+
+.author-preview {
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  box-sizing: border-box;
+  padding: 10px;
+  margin: 0;
+
+  border-radius: 20px;
+  background: var(--tui-background-base-alt);
+
+  font-family: Inter, sans-serif;
+}
+
 .author-section {
   width: max-content;
   padding: 0;
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: 10px;
   overflow: hidden;
   flex-shrink: 0;
 }
@@ -58,7 +83,7 @@
 .avatar-container {
   height: 41px;
   aspect-ratio: 1 / 1;
-  border-radius: 5px;
+  border-radius: 10px;
   overflow: hidden;
 }
 
@@ -73,15 +98,6 @@
   flex-direction: column;
   align-items: flex-start;
   gap: 5px;
-}
-
-.author-name {
-  font-family: 'Montserrat Alternates';
-  font-weight: 600;
-  font-size: 16px;
-  line-height: 18px;
-  color: white;
-  flex-shrink: 0;
 }
 
 .author-label {

@@ -2,12 +2,23 @@
   @if (author) {
     <div class="author-card">
       <div class="avatar">
-        <img src="/assets/img/avatar-error.png" alt="Аватар автора">
+        <img [src]="author.avatarUrl || '/assets/img/avatar-error.png'" alt="Аватар автора">
       </div>
       <div class="author-details">
         <p class="author-name">{{ author.firstName }} {{ author.lastName }}</p>
         <p class="author-meta">{{ author.position }} - {{ author.department }}</p>
         <p class="author-email">{{ author.email }}</p>
+      </div>
+      <div class="author-actions">
+        <button
+          size="s"
+          appearance="outline"
+          tuiButton
+          type="button"
+          [routerLink]="['/edit-profile']"
+        >
+          Редактировать
+        </button>
       </div>
     </div>
   }

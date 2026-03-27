@@ -1,0 +1,50 @@
+:host {
+  margin: 50px auto;
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+  flex-shrink: 0;
+  padding: 40px;
+
+  background-color: var(--tui-background-base-alt);
+  border-radius: 20px;
+}
+
+.comment-compose {
+  display: flex;
+  align-items: flex-end;
+  gap: 16px;
+}
+
+.comment-submit {
+  min-width: 180px;
+}
+
+.comment-body {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.comment-author {
+  font-family: 'Inter';
+  font-weight: 600;
+  font-size: 16px;
+  color: var(--tui-text-primary);
+}
+
+.comment-text {
+  font-family: 'Inter';
+  font-size: 16px;
+  color: var(--tui-text-primary);
+  white-space: pre-wrap;
+}
+
+.comment-meta {
+  font-family: 'Inter';
+  font-size: 13px;
+  color: var(--tui-text-tertiary);
+}

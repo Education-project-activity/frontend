@@ -1,0 +1,49 @@
+@if (reactionSummary(); as summary) {
+  <div class="flex flex-col gap-[12px]">
+    <div class="flex flex-row gap-[10px] align-items-center">
+      <div>
+        <div
+          tuiItemGroup
+          [autoscroll]="true"
+          [horizontal]="true"
+        >
+          @for (reaction of getDisplayReactions(); track reaction.type) {
+          <label
+            tuiChip
+            [appearance]="reaction.type === summary.currentUserReaction ? 'primary' : 'neutral'"
+            (click)="reactToTopic(reaction.type)"
+          >
+            <tui-icon icon="{{ reaction.emoji }}"></tui-icon> {{ reaction.count }}
+          </label>
+          }
+        </div>
+      </div>
+      <label
+        tuiChip
+        appearance="outline"
+        (click)="toggleReactionPicker()"
+      >
+        <tui-icon icon="smile-plus"></tui-icon>
+      </label>
+    </div>
+    @if (isReactionPickerOpen()) {
+      <div
+        tuiItemGroup
+        [autoscroll]="true"
+        [horizontal]="true"
+        class="reaction-picker"
+      >
+        @for (reaction of reactionTypes; track reaction.type) {
+          <label
+            tuiChip
+            [appearance]="reaction.type === summary.currentUserReaction ? 'primary' : 'neutral'"
+            (click)="reactToTopic(reaction.type)"
+            class="!mr-0"
+          >
+            <tui-icon icon="{{ reaction.emoji }}"></tui-icon>
+          </label>
+        }
+      </div>
+    }
+  </div>
+}

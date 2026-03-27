@@ -4,7 +4,7 @@ import {
   Input,
   AfterViewInit,
   OnDestroy,
-  ViewChild,
+  ViewChild, inject,
 } from '@angular/core';
 
 import EditorJS, {
@@ -14,33 +14,22 @@ import EditorJS, {
 
 import Header from '@editorjs/header';
 import Delimiter from '@editorjs/delimiter';
-import ImageTool from '@editorjs/image';
 import Quote from '@editorjs/quote';
 import NestedList from '@editorjs/nested-list';
 import Paragraph from '@editorjs/paragraph';
-import CodeTool from '@editorjs/code';
-import InlineCode from '@editorjs/inline-code';
-import LinkTool from '@editorjs/link';
 import Marker from '@editorjs/marker';
-import Embed from '@editorjs/embed';
-import Checklist from '@editorjs/checklist';
-import Table from '@editorjs/table';
-import RawTool from '@editorjs/raw';
 import Underline from '@editorjs/underline';
+import ImageTool from '@editorjs/image';
+import {ApiConfig} from '../../shared/config/api.config';
 
 const HeaderTool = Header as unknown as ToolConstructable;
 const DelimiterTool = Delimiter as unknown as ToolConstructable;
 const QuoteTool = Quote as unknown as ToolConstructable;
 const NestedListTool = NestedList as unknown as ToolConstructable;
 const ParagraphTool = Paragraph as unknown as ToolConstructable;
-const CodeToolC = CodeTool as unknown as ToolConstructable;
-const InlineCodeTool = InlineCode as unknown as ToolConstructable;
 const MarkerTool = Marker as unknown as ToolConstructable;
-const EmbedTool = Embed as unknown as ToolConstructable;
-const ChecklistTool = Checklist as unknown as ToolConstructable;
-const TableTool = Table as unknown as ToolConstructable;
-const RawToolC = RawTool as unknown as ToolConstructable;
 const UnderlineTool = Underline as unknown as ToolConstructable;
+const ImagesTool = ImageTool as unknown as ToolConstructable;
 
 @Component({
   selector: 'app-editor',
@@ -50,8 +39,9 @@ const UnderlineTool = Underline as unknown as ToolConstructable;
 })
 export class Editor implements AfterViewInit, OnDestroy {
   @Input() data: OutputData | null = null;
-  @ViewChild('editorJS', { static: true })
+  apiConfig = inject(ApiConfig);
 
+  @ViewChild('editorJS', { static: true })
   editorHolder!: ElementRef<HTMLDivElement>;
 
   private editor: EditorJS | null = null;
@@ -71,8 +61,7 @@ export class Editor implements AfterViewInit, OnDestroy {
           toolbox: { title: 'Заголовок H2' },
           inlineToolbar: true,
           config: {
-            levels: [2, 3, 4],
-            defaultLevel: 2,
+            level: 2,
           },
         },
         header3: {
@@ -80,8 +69,7 @@ export class Editor implements AfterViewInit, OnDestroy {
           toolbox: { title: 'Заголовок H3' },
           inlineToolbar: true,
           config: {
-            levels: [2, 3, 4],
-            defaultLevel: 3,
+            level: 3,
           },
         },
         header4: {
@@ -89,13 +77,21 @@ export class Editor implements AfterViewInit, OnDestroy {
           toolbox: { title: 'Заголовок H4' },
           inlineToolbar: true,
           config: {
-            levels: [2, 3, 4],
-            defaultLevel: 4,
+            level: 4,
           },
         },
         paragraph: {
           class: ParagraphTool,
           inlineToolbar: true,
+        },
+        image: {
+          class: ImageTool,
+          config: {
+            endpoints: {
+              byFile: `${this.apiConfig.getBaseApiUrl()}editor/images/by-file`,
+              byUrl: `${this.apiConfig.getBaseApiUrl()}editor/images/by-url`,
+            }
+          }
         },
         list: {
           class: NestedListTool,
@@ -104,27 +100,6 @@ export class Editor implements AfterViewInit, OnDestroy {
           config: {
             defaultStyle: 'unordered'
           }
-        },
-        checklist: {
-          class: ChecklistTool,
-          inlineToolbar: true,
-          toolbox: { title: 'Чеклист' },
-        },
-        embed: {
-          class: EmbedTool,
-          toolbox: { title: 'Вставка видео' },
-          config: {
-            services: {
-              youtube: true,
-              coub: true,
-              imgur: true
-            }
-          }
-        },
-        table: {
-          class: TableTool,
-          inlineToolbar: true,
-          toolbox: { title: 'Таблица' },
         },
         quote: {
           class: QuoteTool,
@@ -135,21 +110,9 @@ export class Editor implements AfterViewInit, OnDestroy {
             captionPlaceholder: 'Автор',
           },
         },
-        code: {
-          class: CodeToolC,
-          toolbox: { title: 'Код' },
-        },
-        raw: {
-          class: RawToolC,
-          toolbox: { title: 'HTML' },
-        },
         delimiter: {
           class: DelimiterTool,
           toolbox: { title: 'Разделитель' },
-        },
-
-        inlineCode: {
-          class: InlineCodeTool,
         },
         marker: {
           class: MarkerTool,

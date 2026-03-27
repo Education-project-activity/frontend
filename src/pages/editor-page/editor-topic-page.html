@@ -1,0 +1,92 @@
+<form
+  class="topic-page"
+  [formGroup]="topicForm"
+  (ngSubmit)="onSubmit()">
+
+  <div class="w-full flex flex-row">
+    <textarea formControlName="title"
+              maxlength="200" resize="none"
+              placeholder="Заголовок" rows="1"
+              class="w-full bg-transparent appearance-none
+              outline-0 focus:ring-0 focus:outline-0
+              placeholder:text-text-tertiary
+              h0 height-auto resize-none h2"></textarea>
+    <button
+      class="ml-auto mr-0"
+      size="m"
+      tuiButton
+      type="button"
+      [disabled]="!isEditorReady"
+      (click)="openMetaStep()"
+    >
+      Далее
+    </button>
+  </div>
+
+  <div class="container">
+    <div class="main-info">
+      @if (isEditorReady) {
+        <app-editor [data]="editorData"></app-editor>
+      }
+    </div>
+  </div>
+
+  <ng-template
+    let-observer
+    [(tuiDialog)]="isMetaStepOpen"
+  >
+    <div class="flex flex-row gap-[24px]">
+      <app-image-upload
+        [initialImage]="topicForm.controls.image.value"
+        (imageChange)="onImageChange($event)"
+      ></app-image-upload>
+      <div class="flex flex-col gap-[8px] w-full max-w-[50%]">
+        <div class="flex flex-col gap-[8px] w-full">
+          <tui-textfield
+            tuiTextfieldSize="l"
+            class="!w-full"
+          >
+            <label tuiLabel>Заголовок</label>
+            <input
+              placeholder="Заголовок"
+              tuiTextfield
+              formControlName="title"
+            />
+          </tui-textfield>
+
+          <tui-textfield
+            multi
+            tuiTextfieldSize="m"
+          >
+            <input
+              placeholder="Введите теги"
+              tuiInputChip
+              [unique]="false"
+              [(ngModel)]="tags"
+              [ngModelOptions]="{standalone: true}"
+              (ngModelChange)="onTagsChange($event)"
+            />
+            <tui-input-chip *tuiItem />
+
+          </tui-textfield>
+        </div>
+      </div>
+    </div>
+
+    <div class="flex justify-end mt-[24px]">
+      <button
+        size="m"
+        tuiButton
+        type="button"
+        [disabled]="isSubmitting"
+        (click)="onSubmit()"
+      >
+        @if (isEditMode) {
+          Сохранить
+        } @else {
+          Опубликовать
+        }
+      </button>
+    </div>
+  </ng-template>
+</form>

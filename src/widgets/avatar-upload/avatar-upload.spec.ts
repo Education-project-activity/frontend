@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EditorMenu } from './editor-menu';
+import { AvatarUpload } from './avatar-upload';
 
-describe('EditorMenu', () => {
-  let component: EditorMenu;
-  let fixture: ComponentFixture<EditorMenu>;
+describe('AvatarUpload', () => {
+  let component: AvatarUpload;
+  let fixture: ComponentFixture<AvatarUpload>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [EditorMenu]
+      imports: [AvatarUpload]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(EditorMenu);
+    fixture = TestBed.createComponent(AvatarUpload);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
